@@ -1,21 +1,22 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FiHome, FiUsers, FiSettings, FiBarChart2 } from 'react-icons/fi';
+import { FiPlusCircle, FiList, FiShoppingCart } from 'react-icons/fi';
 
 interface SidebarProps {
   isOpen: boolean;
   toggleSidebar: () => void;
   closeSidebar: () => void;
+  isCollapsed?: boolean; // New prop for desktop collapsed state
 }
 
-const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({ isOpen, toggleSidebar, closeSidebar }, ref) => {
+const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({ isOpen, toggleSidebar, closeSidebar, isCollapsed = false }, ref) => {
   const location = useLocation();
+  const isDesktop = window.innerWidth >= 1024;
   
   const sidebarLinks = [
-    { name: 'Dashboard', icon: FiHome, path: '/' },
-    { name: 'Users', icon: FiUsers, path: '/users' },
-    { name: 'Settings', icon: FiSettings, path: '/settings' },
-    { name: 'Analytics', icon: FiBarChart2, path: '/analytics' },
+    { name: 'Add Food', icon: FiPlusCircle, path: '/add-food' },
+    { name: 'List Foods', icon: FiList, path: '/list-foods' },
+    { name: 'Orders', icon: FiShoppingCart, path: '/orders' },
   ];
 
   const handleLinkClick = () => {
@@ -28,23 +29,35 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({ isOpen, toggleSideba
   return (
     <aside 
       ref={ref}
-      className={`bg-gray-900 dark:bg-gray-950 text-white w-64 min-h-screen fixed inset-y-0 left-0 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-all duration-300 ease-in-out z-20 pt-16`}
+      className={`bg-white dark:bg-gray-800 text-gray-800 dark:text-white 
+        ${isDesktop 
+          ? isOpen 
+            ? isCollapsed 
+              ? 'w-16 translate-x-0 lg:block' // Collapsed state for desktop (icons only)
+              : 'w-64 translate-x-0 lg:block' // Full state for desktop
+            : '-translate-x-full lg:hidden' 
+          : isOpen 
+            ? 'w-64 translate-x-0' // Mobile open
+            : 'w-64 -translate-x-full' // Mobile closed
+        } 
+        h-full border-r border-gray-200 dark:border-gray-700 
+        transition-all duration-300 ease-in-out z-20 fixed`}
     >
-      <div className="p-4">
+      <div className={`${isCollapsed && isDesktop ? 'p-2' : 'p-4'} h-full`}>
         <ul className="space-y-2">
           {sidebarLinks.map((link) => (
             <li key={link.name}>
               <Link 
                 to={link.path} 
-                className={`flex items-center p-3 rounded-lg transition-colors duration-200 ${
+                className={`flex items-center ${isCollapsed && isDesktop ? 'p-2 justify-center' : 'p-3'} rounded-lg transition-colors duration-200 ${
                   location.pathname === link.path 
-                    ? 'bg-gray-800 dark:bg-gray-800 text-white' 
-                    : 'hover:bg-gray-800 dark:hover:bg-gray-800'
+                    ? 'bg-blue-50 text-blue-600 font-medium dark:bg-gray-700 dark:text-blue-400' 
+                    : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
                 onClick={handleLinkClick}
               >
-                <link.icon size={24} className="mr-3" />
-                <span>{link.name}</span>
+                <link.icon size={24} className={isCollapsed && isDesktop ? '' : 'mr-3'} />
+                {(!isCollapsed || !isDesktop) && <span>{link.name}</span>}
               </Link>
             </li>
           ))}

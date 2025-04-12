@@ -1,41 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import MainLayout from './components/layout/MainLayout';
-import Dashboard from './pages/Dashboard';
-import Users from './pages/Users';
-import Settings from './pages/Settings';
-import Analytics from './pages/Analytics';
-import { ThemeProvider } from './context/ThemeContext';
-import './App.css';
+import AddFood from './pages/AddFood/AddFood';
+import ListFood from './pages/ListFood/ListFood';
+import Orders from './pages/Orders/Orders';
 
 function App() {
   return (
-    <ThemeProvider>
-      <Router>
         <Routes>
           <Route path="/" element={
             <MainLayout>
-              <Dashboard />
+              <ListFood />
             </MainLayout>
           } />
-          <Route path="/users" element={
+          <Route path="/add-food" element={
             <MainLayout>
-              <Users />
+              <AddFood />
             </MainLayout>
           } />
-          <Route path="/settings" element={
+          <Route path="/list-foods" element={
             <MainLayout>
-              <Settings />
+              <ListFood />
             </MainLayout>
           } />
-          <Route path="/analytics" element={
+          <Route path="/orders" element={
             <MainLayout>
-              <Analytics />
+              <Orders />
             </MainLayout>
           } />
           {/* Auth routes can be added here later */}
         </Routes>
-      </Router>
-    </ThemeProvider>
   );
 }
 
