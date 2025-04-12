@@ -19,6 +19,36 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Modern scrollbar styles */
+/* For webkit browsers like Chrome, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* For Firefox */
+html {
+  scrollbar-color: theme('colors.gray.300') transparent;
+  scrollbar-width: thin;
+}
+
+.dark html {
+  scrollbar-color: theme('colors.gray.600') transparent;
+}
+
 /* Fix for mobile layout */
 @media (max-width: 1024px) {
   .lg\:pl-64 {

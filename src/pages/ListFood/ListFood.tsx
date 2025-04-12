@@ -158,7 +158,18 @@ const ListFood = () => {
         ) : (
           <>
             {/* Desktop view - Table */}
-            <div className="hidden md:block overflow-x-auto">
+            <div className="hidden md:block overflow-x-auto scrollbar-styled">
+              <style jsx>{`
+                .scrollbar-styled::-webkit-scrollbar {
+                  height: 6px;
+                }
+                .scrollbar-styled::-webkit-scrollbar-thumb {
+                  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+                }
+                .scrollbar-styled::-webkit-scrollbar-thumb:hover {
+                  @apply bg-gray-400 dark:bg-gray-500;
+                }
+              `}</style>
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-700">
                   <tr>
