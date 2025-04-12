@@ -217,9 +217,9 @@ const AddFood = () => {
       />
       
       {/* Food item form */}
-      <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-4 sm:p-6 overflow-hidden">
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div className="mb-4">
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Food Name
@@ -276,7 +276,7 @@ const AddFood = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm md:text-base"
               >
                 <option value="">Select a category</option>
                 {allCategories.map((category) => (
@@ -300,7 +300,7 @@ const AddFood = () => {
                       name="customCategory"
                       value={formData.customCategory}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm md:text-base"
                     >
                       <option value="">Select or enter a custom category</option>
                       {customCategories.map((category) => (
@@ -358,7 +358,7 @@ const AddFood = () => {
                 name="foodType"
                 value={formData.foodType}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm md:text-base"
               >
                 {Object.entries(foodTypeDisplayNames).map(([value, label]) => (
                   <option key={value} value={value}>
@@ -372,7 +372,7 @@ const AddFood = () => {
               <label htmlFor="image" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Food Image
               </label>
-              <div className="flex items-center">
+              <div className="flex items-center flex-wrap">
                 <input
                   type="file"
                   id="image"
@@ -384,7 +384,7 @@ const AddFood = () => {
                 />
                 <label
                   htmlFor="image"
-                  className="flex items-center cursor-pointer px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                  className="flex items-center cursor-pointer px-3 py-2 sm:px-4 sm:py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base"
                 >
                   <FiUpload className="mr-2" />
                   Upload Image
@@ -392,7 +392,7 @@ const AddFood = () => {
               </div>
               {imagePreview && (
                 <div className="mt-2">
-                  <div className="relative w-32 h-32 overflow-hidden rounded-md">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 overflow-hidden rounded-md">
                     <img 
                       src={imagePreview} 
                       alt="Preview" 
@@ -412,10 +412,10 @@ const AddFood = () => {
             </div>
           </div>
           
-          <div className="mt-6 flex justify-end space-x-3">
+          <div className="mt-6 flex flex-wrap justify-end gap-3">
             <button 
               type="button"
-              className="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+              className="px-3 py-2 sm:px-4 sm:py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base"
               onClick={() => {
                 setFormData({
                   name: '',
@@ -433,7 +433,7 @@ const AddFood = () => {
             </button>
             <button 
               type="submit"
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+              className="px-3 py-2 sm:px-4 sm:py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm sm:text-base"
               disabled={loading}
             >
               {loading ? 'Saving...' : 'Add Food Item'}

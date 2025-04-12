@@ -117,15 +117,15 @@ const FoodDetails = () => {
       />
       
       {loading ? (
-        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6 text-center">
+        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-4 sm:p-6 text-center">
           <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full mx-auto"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-400">Loading food details...</p>
         </div>
       ) : error ? (
-        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6 text-center">
+        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-4 sm:p-6 text-center">
           <p className="text-red-500">{error}</p>
           <button
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="mt-4 px-3 py-2 sm:px-4 sm:py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm sm:text-base"
             onClick={() => navigate(-1)}
           >
             Go Back
@@ -133,9 +133,9 @@ const FoodDetails = () => {
         </div>
       ) : food ? (
         <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
-          <div className="md:flex">
+          <div className="flex flex-col md:flex-row">
             {/* Food Image */}
-            <div className="md:w-1/3 p-6">
+            <div className="md:w-1/3 p-4 sm:p-6">
               <div className="bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden aspect-square flex items-center justify-center">
                 <img 
                   src={food.imageUrl} 
@@ -149,7 +149,7 @@ const FoodDetails = () => {
             </div>
             
             {/* Food Details */}
-            <div className="md:w-2/3 p-6">
+            <div className="md:w-2/3 p-4 sm:p-6">
               <div className="flex flex-wrap gap-2 mb-4 items-center">
                 <FoodTypeBadge type={food.foodType} />
                 <span className="px-2 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 text-xs font-medium">
@@ -157,22 +157,22 @@ const FoodDetails = () => {
                 </span>
               </div>
               
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 break-words">
                 {food.name}
               </h1>
               
-              <div className="text-xl font-semibold text-green-600 dark:text-green-400 mb-4">
+              <div className="text-lg sm:text-xl font-semibold text-green-600 dark:text-green-400 mb-4">
                 ₹{food.price.toFixed(2)}
               </div>
               
               <div className="mb-6">
                 <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Description</h2>
-                <p className="text-gray-800 dark:text-gray-200 whitespace-pre-line">
+                <p className="text-gray-800 dark:text-gray-200 whitespace-pre-line break-words">
                   {food.description}
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <h2 className="font-medium text-gray-500 dark:text-gray-400 mb-1">Created</h2>
                   <p className="text-gray-800 dark:text-gray-200">
@@ -190,10 +190,10 @@ const FoodDetails = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6 text-center">
+        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-4 sm:p-6 text-center">
           <p className="text-gray-600 dark:text-gray-400">No food data found.</p>
           <button
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="mt-4 px-3 py-2 sm:px-4 sm:py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm sm:text-base"
             onClick={() => navigate(-1)}
           >
             Go Back

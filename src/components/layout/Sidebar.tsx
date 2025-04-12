@@ -41,7 +41,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({ isOpen, toggleSideba
             : 'w-64 -translate-x-full' // Mobile closed
         } 
         h-full border-r border-gray-200 dark:border-gray-700 
-        transition-all duration-300 ease-in-out z-20 fixed`}
+        transition-all duration-300 ease-in-out z-20 fixed overflow-y-auto overflow-x-hidden`}
     >
       <div className={`${isCollapsed && isDesktop ? 'p-2' : 'p-4'} h-full`}>
         <ul className="space-y-2">
@@ -49,15 +49,15 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({ isOpen, toggleSideba
             <li key={link.name}>
               <Link 
                 to={link.path} 
-                className={`flex items-center ${isCollapsed && isDesktop ? 'p-2 justify-center' : 'p-3'} rounded-lg transition-colors duration-200 ${
+                className={`flex items-center ${isCollapsed && isDesktop ? 'p-2 justify-center' : 'px-2 py-3'} rounded-lg transition-colors duration-200 ${
                   location.pathname === link.path 
                     ? 'bg-blue-50 text-blue-600 font-medium dark:bg-gray-700 dark:text-blue-400' 
                     : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
                 onClick={handleLinkClick}
               >
-                <link.icon size={24} className={isCollapsed && isDesktop ? '' : 'mr-3'} />
-                {(!isCollapsed || !isDesktop) && <span>{link.name}</span>}
+                <link.icon size={isCollapsed && isDesktop ? 24 : 20} className={isCollapsed && isDesktop ? '' : 'mr-3 flex-shrink-0'} />
+                {(!isCollapsed || !isDesktop) && <span className="truncate">{link.name}</span>}
               </Link>
             </li>
           ))}

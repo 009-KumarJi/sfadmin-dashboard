@@ -86,7 +86,7 @@ function MainLayout({ children }: MainLayoutProps) {
   }, [sidebarOpen, isDesktopView]);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
       {/* Navbar - fixed at top */}
       <Navbar 
         toggleSidebar={toggleSidebar} 
@@ -95,7 +95,7 @@ function MainLayout({ children }: MainLayoutProps) {
       />
       
       {/* Main content area - flex container for sidebar and content */}
-      <div className="flex flex-1 pt-16">
+      <div className="flex flex-1 pt-16 overflow-hidden">
         {/* Sidebar */}
         <Sidebar 
           isOpen={sidebarOpen} 
@@ -106,14 +106,14 @@ function MainLayout({ children }: MainLayoutProps) {
         />
         
         {/* Main content - adjust padding based on sidebar state */}
-        <div className={`flex-1 transition-all duration-300 ${
+        <div className={`flex-1 transition-all duration-300 overflow-auto ${
           isDesktopView 
             ? (sidebarOpen 
                 ? (sidebarCollapsed ? 'ml-16' : 'ml-64') 
                 : 'ml-0') 
             : 'lg:ml-0'
         }`}>
-          <div className="p-4 md:p-6 lg:p-8 text-gray-900 dark:text-gray-100">
+          <div className="p-3 md:p-5 lg:p-7 text-gray-900 dark:text-gray-100 max-w-full">
             {children}
           </div>
         </div>

@@ -43,25 +43,25 @@ function Navbar({ toggleSidebar, sidebarOpen = false, sidebarCollapsed = false }
   };
   
   return (
-    <nav className="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white h-16 flex items-center justify-between px-4 fixed top-0 w-full z-10 transition-colors duration-300">
-      <div className="flex items-center">
+    <nav className="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white h-16 flex items-center justify-between px-3 sm:px-4 fixed top-0 w-full z-10 transition-colors duration-300 overflow-hidden">
+      <div className="flex items-center overflow-hidden">
         <button 
-          className="mr-4 p-2 text-gray-700 dark:text-white"
+          className="mr-2 sm:mr-4 p-2 text-gray-700 dark:text-white flex-shrink-0"
           onClick={handleToggleClick}
           aria-label="Toggle sidebar"
         >
           <div className="transform transition-transform duration-300">
             {isDesktop ? (
               sidebarOpen ? 
-                (sidebarCollapsed ? <FiArrowRight className="w-6 h-6" /> : <FiArrowLeft className="w-6 h-6" />) 
-                : <FiArrowRight className="w-6 h-6" />
+                (sidebarCollapsed ? <FiArrowRight className="w-5 h-5 sm:w-6 sm:h-6" /> : <FiArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />) 
+                : <FiArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
             ) : (
-              <FiArrowRight className={`w-6 h-6 ${sidebarOpen ? 'rotate-180' : 'rotate-0'}`} />
+              <FiArrowRight className={`w-5 h-5 sm:w-6 sm:h-6 ${sidebarOpen ? 'rotate-180' : 'rotate-0'}`} />
             )}
           </div>  
         </button>
-        <img src={assets.logo} alt="Logo" className="h-8 w-8 mr-2" />
-        <h1 className="text-xl font-bold lg:mr-10">{getCurrentPageHeading()}</h1>
+        <img src={assets.logo} alt="Logo" className="h-7 w-7 sm:h-8 sm:w-8 mr-2 flex-shrink-0" />
+        <h1 className="text-lg sm:text-xl font-bold lg:mr-10 truncate">{getCurrentPageHeading()}</h1>
       </div>
     </nav>
   );
